@@ -4,6 +4,13 @@ phases:
   install:
     runtime-versions:
       java: openjdk8
+    commands:
+      - echo Running INSTALL phase
+  build:
+    commands:
+      - echo Running BUILD phase
+      - ./gradlew build
+
 
 artifacts:
   files:
