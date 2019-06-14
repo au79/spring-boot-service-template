@@ -23,8 +23,8 @@ targetCompatibility = 1.8
 
 docker {
 	dependsOn(bootJar)
-	name "171154126783.dkr.ecr.us-west-2.amazonaws.com/spring-boot-service"
-	tag "${project.version}", "latest"
+	name "171154126783.dkr.ecr.us-west-2.amazonaws.com/spring-boot-service:latest"
+	tag "171154126783.dkr.ecr.us-west-2.amazonaws.com/spring-boot-service:${project.version}"
 	copySpec.from(tasks.bootJar.outputs.files.singleFile).into("/")
 }
 
