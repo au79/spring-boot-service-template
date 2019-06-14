@@ -1,6 +1,6 @@
 buildscript {
 	dependencies {
-		classpath('gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.13.0')
+		classpath('gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.22.1')
 	}
 }
 
@@ -20,11 +20,15 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+
 docker {
 	dependsOn(bootJar)
 	name "171154126783.dkr.ecr.us-west-2.amazonaws.com/spring-boot-service"
+	tag "${project.version}", "latest"
 	copySpec.from(tasks.bootJar.outputs.files.singleFile).into("/")
 }
+
+tasks.dockerPush.dependsOn { tasks.dockerTag }
 
 springBoot {
 	buildInfo()
