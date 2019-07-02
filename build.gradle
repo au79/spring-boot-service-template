@@ -26,6 +26,7 @@ project.ext.dockerImageName = 'spring-boot-service'
 docker {
 	dependsOn(bootJar)
 	name "${project.dockerImageRepository}/${project.dockerImageName}"
+	tag 'Latest', "${project.dockerImageRepository}/${project.dockerImageName}:latest"
 	tag 'ProjectVersion', "${project.dockerImageRepository}/${project.dockerImageName}:${project.version}"
 	buildArgs(['JAR_FILE': (String) tasks.bootJar.archivePath.name])
 	copySpec.from(tasks.bootJar.archivePath).into("/")
