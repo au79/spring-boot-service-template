@@ -20,13 +20,15 @@ version = '0.0.4-SNAPSHOT'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+project.ext.dockerImageRepository = '171154126783.dkr.ecr.us-west-2.amazonaws.com'
+project.ext.dockerImageName = 'spring-boot-service'
 
 docker {
 	dependsOn(bootJar)
-	name "171154126783.dkr.ecr.us-west-2.amazonaws.com/spring-boot-service"
-	tag 'ProjectVersion', "171154126783.dkr.ecr.us-west-2.amazonaws.com/spring-boot-service:${project.version}"
-	tag 'Latest', "171154126783.dkr.ecr.us-west-2.amazonaws.com/spring-boot-service:latest"
-	copySpec.from(tasks.bootJar.outputs.files.singleFile).into("/")
+	name "${project.dockerImageRepository}/${project.dockerImageName}"
+	tag 'ProjectVersion', "${project.dockerImageRepository}/${project.dockerImageName}:${project.version}"
+	buildArgs(['JAR_FILE': (String) tasks.bootJar.archivePath.name])
+	copySpec.from(tasks.bootJar.archivePath).into("/")
 }
 
 tasks.dockerPush.dependsOn { tasks.dockerTag }

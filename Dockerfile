@@ -1,6 +1,6 @@
 FROM openjdk:8-jdk-alpine
 VOLUME /tmp
 EXPOSE 5150
-COPY ${JAR_FILE} /opt
-ENV JAR_FILE "${JAR_FILE}"
-ENTRYPOINT exec java -Djava.security.egd=file:/dev/./urandom -jar "/opt/${JAR_FILE}"
+ARG JAR_FILE=spring-boot-service-*.jar
+COPY ${JAR_FILE} /spring-boot-service.jar
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/spring-boot-service.jar"]
