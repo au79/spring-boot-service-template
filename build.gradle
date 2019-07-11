@@ -1,9 +1,3 @@
-buildscript {
-	dependencies {
-		classpath('gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.22.1')
-	}
-}
-
 plugins {
 	id 'org.springframework.boot' version '2.1.5.RELEASE'
 	id 'java'
@@ -13,31 +7,36 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
-apply plugin: 'com.palantir.docker'
 
 group = 'com.oolong.template'
 version = '0.0.5-SNAPSHOT'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-project.ext.dockerImageRepository = '171154126783.dkr.ecr.us-west-2.amazonaws.com'
-project.ext.dockerImageName = 'spring-boot-service'
+project.ext.dockerImageRepository = '171154126783.dkr.ecr.us-west-1.amazonaws.com'
+project.ext.dockerImageName = 'oolong/spring-boot-service'
 
-docker {
+task dockerLogin(type: Exec) {
 	dependsOn(bootJar)
-	name "${project.dockerImageRepository}/${project.dockerImageName}"
-	tag 'Latest', "${project.dockerImageRepository}/${project.dockerImageName}:latest"
-	tag 'ProjectVersion', "${project.dockerImageRepository}/${project.dockerImageName}:${project.version}"
-	buildArgs(['JAR_FILE': (String) tasks.bootJar.archivePath.name])
-	copySpec.from(tasks.bootJar.archivePath).into("/")
+	commandLine './docker-scripts/docker-login.sh'
 }
 
-tasks.dockerPush.dependsOn { tasks.dockerTag }
+task dockerBuildAndTag(type: Exec) {
+	dependsOn(dockerLogin)
+	commandLine './docker-scripts/docker-build-and-tag.sh', "${project.dockerImageRepository}", "${project.dockerImageName}", "${project.version}"
+}
+
+task dockerPush(type: Exec){
+	dependsOn(dockerBuildAndTag)
+	commandLine './docker-scripts/docker-push.sh', "${project.dockerImageRepository}", "${project.dockerImageName}", "${project.version}"
+}
 
 springBoot {
 	buildInfo()
 	mainClassName = "com.oolong.template.springbootservice.SpringBootServiceApplication"
 }
+
+task removeOld
 
 bootJar {
 	archiveBaseName = "${project.name}"
