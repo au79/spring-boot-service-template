@@ -21,7 +21,7 @@ BRANCH_NAME=$(git branch | grep '*' | sed 's/* //')
 if [ "${BRANCH_NAME}" == "${PROTECTED_BRANCH}" ] && [ "${COMMIT_SOURCE}" == "merge" ]
 then
     # On the protected branch.  Check the diff for a changed version.
-    NEW_VERSION_LINE=$(git --no-pager diff --cached --diff-filter=M build.gradle | grep "^\+version\s*=")
+    NEW_VERSION_LINE=$(git --no-pager diff --cached --diff-filter=AM build.gradle | grep "^\+version\s*=")
     if [ -z "${NEW_VERSION_LINE}" ]
     then
         echo Denying commit to the \"${PROTECTED_BRANCH}\" branch.
