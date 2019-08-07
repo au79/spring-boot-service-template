@@ -11,10 +11,6 @@ phases:
   build:
     commands:
       - ./gradlew dockerPush
-  post_build:
-    commands:
-      - cp aws/* build
-
 
 artifacts:
   files:
