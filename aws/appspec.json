@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "Resources": [
+    {
+      "TargetService": {
+        "Type": "AWS::ECS::Service",
+        "Properties": {
+          "TaskDefinition": "arn:aws:ecs:us-west-1:171154126783:task-definition/spring-boot-service-taskdef:3",
+          "LoadBalancerInfo": {
+            "ContainerName": "spring-boot-service-container",
+            "ContainerPort": 5150
+          }
+        }
+      }
+    }
+  ]
+}
