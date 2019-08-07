@@ -1,0 +1,33 @@
+{
+  "executionRoleArn": "arn:aws:iam::171154126783:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "secretOptions": null,
+        "options": {
+          "awslogs-group": "/ecs/spring-boot-service-taskdef",
+          "awslogs-region": "us-west-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      },
+      "portMappings": [
+        {
+          "hostPort": 5150,
+          "protocol": "tcp",
+          "containerPort": 5150
+        }
+      ],
+      "image": "171154126783.dkr.ecr.us-west-1.amazonaws.com/oolong/spring-boot-service",
+      "name": "spring-boot-service-container"
+    }
+  ],
+  "memory": "512",
+  "family": "spring-boot-service-taskdef",
+  
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "networkMode": "awsvpc",
+  "cpu": "256",
+}
