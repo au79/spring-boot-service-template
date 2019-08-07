@@ -16,8 +16,3 @@ phases:
 artifacts:
   files:
     - 'build/libs/*'
-
-cache:
-  paths:
-    - '/root/.gradle/wrapper/**/*'
-    - '.gradle/**/*'
