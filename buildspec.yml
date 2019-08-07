@@ -15,4 +15,5 @@ phases:
 artifacts:
   files:
     - 'imageDetail.json'
+    - 'taskdef.json'
     - 'appspec.json'
