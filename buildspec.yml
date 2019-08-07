@@ -20,4 +20,3 @@ artifacts:
   files:
     - 'build/libs/*'
     - 'appspec.json'
-'
