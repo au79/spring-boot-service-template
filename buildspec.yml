@@ -11,6 +11,9 @@ phases:
   build:
     commands:
       - ./gradlew dockerPush
+  post_build:
+    commands:
+      - aws s3 cp spring-boot-service-deploy-specs.zip s3://com.oolong.build-artifacts.us-west-1/
 
 artifacts:
   files:

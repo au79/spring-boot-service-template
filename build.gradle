@@ -9,7 +9,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 group = 'com.oolong.template'
-version = '0.0.19-SNAPSHOT'
+version = '0.0.20-SNAPSHOT'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
