@@ -14,5 +14,4 @@ phases:
 
 artifacts:
   files:
-    - 'taskdef.json'
-    - 'appspec.json'
+    - 'build/libs/*'
