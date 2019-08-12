@@ -26,6 +26,11 @@ hs_err_pid*
 .idea/
 .gradle/
 
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+
 # Gradle buildDir
 build/
 
