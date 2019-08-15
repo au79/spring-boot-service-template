@@ -13,7 +13,7 @@ version = '0.0.22-SNAPSHOT'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-project.ext.dockerImageRepository = '171154126783.dkr.ecr.us-west-1.amazonaws.com'
+project.ext.dockerImageRepository = '171154126783.dkr.ecr.us-west-2.amazonaws.com'
 project.ext.dockerImageName = 'oolong/spring-boot-service'
 
 task dockerLogin(type: Exec) {
