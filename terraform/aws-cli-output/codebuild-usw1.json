@@ -1,0 +1,81 @@
+{
+    "projects": [
+        {
+            "name": "spring-boot-service-build-usw1",
+            "arn": "arn:aws:codebuild:us-west-1:171154126783:project/spring-boot-service-build-usw1",
+            "source": {
+                "type": "GITHUB",
+                "location": "https://github.com/au79/spring-boot-service-template.git",
+                "gitCloneDepth": 1,
+                "gitSubmodulesConfig": {
+                    "fetchSubmodules": false
+                },
+                "reportBuildStatus": true,
+                "insecureSsl": false
+            },
+            "secondarySources": [],
+            "secondarySourceVersions": [],
+            "artifacts": {
+                "type": "S3",
+                "location": "com.oolong.build-artifacts.us-west-1",
+                "path": "",
+                "namespaceType": "NONE",
+                "name": "spring-boot-service",
+                "packaging": "NONE",
+                "overrideArtifactName": false,
+                "encryptionDisabled": false
+            },
+            "secondaryArtifacts": [],
+            "cache": {
+                "type": "NO_CACHE"
+            },
+            "environment": {
+                "type": "LINUX_CONTAINER",
+                "image": "aws/codebuild/standard:2.0",
+                "computeType": "BUILD_GENERAL1_SMALL",
+                "environmentVariables": [],
+                "privilegedMode": true,
+                "imagePullCredentialsType": "CODEBUILD"
+            },
+            "serviceRole": "arn:aws:iam::171154126783:role/service-role/CodeBuild-Service-Role",
+            "timeoutInMinutes": 60,
+            "queuedTimeoutInMinutes": 480,
+            "encryptionKey": "arn:aws:kms:us-west-1:171154126783:alias/aws/s3",
+            "tags": [],
+            "created": 1563305045.212,
+            "lastModified": 1565373014.807,
+            "webhook": {
+                "url": "https://api.github.com/repos/au79/spring-boot-service-template/hooks/130438850",
+                "payloadUrl": "https://codebuild.us-west-1.amazonaws.com/webhooks?t=eyJlbmNyeXB0ZWREYXRhIjoiOGExU05yV3Q2VjdodktlaVVaSkVSSFVaS1VwQ2owZnJtTWlsMWt6YzBkbytrQ3IzZWMwbFkxREZCY2F4Z29WVlQvOWd3WmJVaDhrdDNKTmVIek1pcHpRPSIsIml2UGFyYW1ldGVyU3BlYyI6ImMvcFF6aVVEWUxkQmFXZHciLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&v=1",
+                "filterGroups": [
+                    [
+                        {
+                            "type": "EVENT",
+                            "pattern": "PUSH",
+                            "excludeMatchedPattern": false
+                        },
+                        {
+                            "type": "HEAD_REF",
+                            "pattern": "^refs/heads/master$",
+                            "excludeMatchedPattern": false
+                        }
+                    ]
+                ]
+            },
+            "badge": {
+                "badgeEnabled": true,
+                "badgeRequestUrl": "https://codebuild.us-west-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiZC9KK0FrelBqbjlONFo4U0VyaHhCeG5QTUFYMHNXWE9pZStES1BDVElBWFk4Q0ljTEVnbG1DQ2UrbFBVWkdFWGQxTU9qNlpHa01XZFVwT3RkTmFJVTlZPSIsIml2UGFyYW1ldGVyU3BlYyI6IkZ1Z3dtdVBwOWxZYWNUeUIiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master"
+            },
+            "logsConfig": {
+                "cloudWatchLogs": {
+                    "status": "ENABLED"
+                },
+                "s3Logs": {
+                    "status": "DISABLED",
+                    "encryptionDisabled": false
+                }
+            }
+        }
+    ],
+    "projectsNotFound": []
+}

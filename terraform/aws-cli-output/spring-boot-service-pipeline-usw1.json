@@ -1,0 +1,101 @@
+{
+    "pipeline": {
+        "name": "spring-boot-service-pipeline-usw1",
+        "roleArn": "arn:aws:iam::171154126783:role/service-role/AWSCodePipelineRole-us-west-1",
+        "artifactStore": {
+            "type": "S3",
+            "location": "codepipeline-us-west-1-111894204269"
+        },
+        "stages": [
+            {
+                "name": "Source",
+                "actions": [
+                    {
+                        "name": "DeploymentConfigSource",
+                        "actionTypeId": {
+                            "category": "Source",
+                            "owner": "AWS",
+                            "provider": "S3",
+                            "version": "1"
+                        },
+                        "runOrder": 1,
+                        "configuration": {
+                            "PollForSourceChanges": "false",
+                            "S3Bucket": "com.oolong.build-artifacts.us-west-1",
+                            "S3ObjectKey": "spring-boot-service-deploy-specs.zip"
+                        },
+                        "outputArtifacts": [
+                            {
+                                "name": "DeploymentConfigArtifacts"
+                            }
+                        ],
+                        "inputArtifacts": [],
+                        "region": "us-west-1"
+                    },
+                    {
+                        "name": "ApplicationImageSource",
+                        "actionTypeId": {
+                            "category": "Source",
+                            "owner": "AWS",
+                            "provider": "ECR",
+                            "version": "1"
+                        },
+                        "runOrder": 1,
+                        "configuration": {
+                            "ImageTag": "latest",
+                            "RepositoryName": "oolong/spring-boot-service"
+                        },
+                        "outputArtifacts": [
+                            {
+                                "name": "ApplicationImageArtifact"
+                            }
+                        ],
+                        "inputArtifacts": [],
+                        "region": "us-west-1"
+                    }
+                ]
+            },
+            {
+                "name": "Deploy",
+                "actions": [
+                    {
+                        "name": "Deploy",
+                        "actionTypeId": {
+                            "category": "Deploy",
+                            "owner": "AWS",
+                            "provider": "CodeDeployToECS",
+                            "version": "1"
+                        },
+                        "runOrder": 1,
+                        "configuration": {
+                            "AppSpecTemplateArtifact": "DeploymentConfigArtifacts",
+                            "AppSpecTemplatePath": "appspec.json",
+                            "ApplicationName": "AppECS-fargate-cluster-usw1-spring-boot-service-blue-green",
+                            "DeploymentGroupName": "DgpECS-fargate-cluster-usw1-spring-boot-service-blue-green",
+                            "Image1ArtifactName": "ApplicationImageArtifact",
+                            "Image1ContainerName": "IMAGE1_NAME",
+                            "TaskDefinitionTemplateArtifact": "DeploymentConfigArtifacts",
+                            "TaskDefinitionTemplatePath": "taskdef.json"
+                        },
+                        "outputArtifacts": [],
+                        "inputArtifacts": [
+                            {
+                                "name": "DeploymentConfigArtifacts"
+                            },
+                            {
+                                "name": "ApplicationImageArtifact"
+                            }
+                        ],
+                        "region": "us-west-1"
+                    }
+                ]
+            }
+        ],
+        "version": 3
+    },
+    "metadata": {
+        "pipelineArn": "arn:aws:codepipeline:us-west-1:171154126783:spring-boot-service-pipeline-usw1",
+        "created": 1565383869.615,
+        "updated": 1565389145.454
+    }
+}
