@@ -53,6 +53,13 @@ resource "aws_ecs_service" "ecs_service" {
   task_definition = aws_ecs_task_definition.spring-boot-service-taskdef.arn
   desired_count = 1
   launch_type = "FARGATE"
+  deployment_controller {
+    type = "CODE_DEPLOY"
+  }
+  network_configuration {
+    security_groups = [aws_security_group.fargate_cluster_ecs_sg.id]
+    subnets = aws_subnet.fargate_cluster_subnets.*.id
+  }
   load_balancer {
     target_group_arn = aws_lb_target_group.blue.id
     container_name = "spring-boot-service-container"
