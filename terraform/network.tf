@@ -1,14 +1,31 @@
+# Specify the provider and access details
 provider "aws" {
   profile    = "default"
   region     = var.region
 }
 
+## EC2
+
+### Network
+
+data "aws_availability_zones" "available" {
+  state = "available"
+}
+
 resource "aws_vpc" "fargate_cluster_vpc" {
   cidr_block = "10.0.0.0/16"
+
+  tags = {
+    project = "cd-pipeline"
+  }
 }
 
 resource "aws_internet_gateway" "fargate_cluster_igw" {
   vpc_id = aws_vpc.fargate_cluster_vpc.id
+
+  tags = {
+    project = "cd-pipeline"
+  }
 }
 
 resource "aws_route_table" "fargate_cluster_route_table" {
@@ -17,33 +34,37 @@ resource "aws_route_table" "fargate_cluster_route_table" {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.fargate_cluster_igw.id
   }
+
+  tags = {
+    project = "cd-pipeline"
+  }
 }
 
-resource "aws_subnet" "fargate_cluster_subnet1" {
-  cidr_block = "10.0.0.0/24"
+resource "aws_subnet" "fargate_cluster_subnets" {
+  count = var.subnet_count
+  cidr_block = cidrsubnet(aws_vpc.fargate_cluster_vpc.cidr_block, 8, count.index)
   vpc_id = aws_vpc.fargate_cluster_vpc.id
-  availability_zone = var.az1
+  availability_zone = data.aws_availability_zones.available.names[count.index]
 
+  tags = {
+    project = "cd-pipeline"
+  }
 }
 
-resource "aws_subnet" "fargate_cluster_subnet2" {
-  cidr_block = "10.0.1.0/24"
-  vpc_id = aws_vpc.fargate_cluster_vpc.id
-  availability_zone = var.az2
-}
-
-resource "aws_route_table_association" "fargate_cluster_rta1" {
+resource "aws_route_table_association" "fc_rt_association" {
+  count = var.subnet_count
   route_table_id = aws_route_table.fargate_cluster_route_table.id
-  subnet_id = aws_subnet.fargate_cluster_subnet1.id
+  subnet_id = aws_subnet.fargate_cluster_subnets.*.id[count.index]
 }
 
-resource "aws_route_table_association" "fargate_cluster_rta2" {
-  route_table_id = aws_route_table.fargate_cluster_route_table.id
-  subnet_id = aws_subnet.fargate_cluster_subnet2.id
-}
+### Security
 
 resource "aws_security_group" "fargate_cluster_alb_sg" {
   vpc_id = aws_vpc.fargate_cluster_vpc.id
+
+  tags = {
+    project = "cd-pipeline"
+  }
 }
 
 resource "aws_security_group_rule" "fargate_cluster_alb_sg_rule_port80" {
@@ -66,6 +87,10 @@ resource "aws_security_group_rule" "fargate_cluster_alb_sg_rule_port8080" {
 
 resource "aws_security_group" "fargate_cluster_ecs_sg" {
   vpc_id = aws_vpc.fargate_cluster_vpc.id
+
+  tags = {
+    project = "cd-pipeline"
+  }
 }
 
 resource "aws_security_group_rule" "fargate_cluster_ecs_sg_rule" {
@@ -76,35 +101,3 @@ resource "aws_security_group_rule" "fargate_cluster_ecs_sg_rule" {
   type = "ingress"
   source_security_group_id = aws_security_group.fargate_cluster_alb_sg.id
 }
-
-resource "aws_ecs_task_definition" "spring-boot-service-taskdef" {
-  name = "spring-boot-service-taskdef_${var.region}"
-
-  container_definitions = file("container-definitions.json")
-  family = "spring-boot-service-taskdef"
-  execution_role_arn = var.task_execution_role_arn
-}
-
-resource "aws_ecs_cluster" "fargate_cluster" {
-  name = "fargate_cluster_${var.region}"
-}
-
-resource "aws_alb" "spring_boot_service_lb" {
-  name = "spring_boot_service_alb_${var.region}"
-  
-}
-
-
-
-resource "aws_ecs_service" "ecs_service" {
-  name = "spring-boot-service-blue-green_${var.region}"
-  cluster = aws_ecs_cluster.fargate_cluster.id
-  task_definition = aws_ecs_task_definition.spring-boot-service-taskdef.arn
-  desired_count = 1
-  launch_type = "FARGATE"
-  load_balancer {
-    container_name = "spring-boot-service-container"
-    container_port = 5150
-  }
-}
-

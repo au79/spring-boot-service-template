@@ -1,23 +1,58 @@
 variable "region" {
-  default = "us-west-1"
+  default = "us-west-2"
 }
 
-variable "az1" {
-  default = "us-west-1c"
-}
-
-variable "az2" {
-  default = "us-west-1b"
+variable "subnet_count" {
+  default = 2
 }
 
 variable "ecr_repository_name" {
-  default = "oolong/spring-boot-service"
+}
+
+variable "ecr_image_tag" {
+  default = "latest"
 }
 
 variable "container_image_uri" {
-  default = "171154126783.dkr.ecr.us-west-1.amazonaws.com/oolong/spring-boot-service:latest"
 }
 
 variable "task_execution_role_arn" {
-  default = "arn:aws:iam::171154126783:role/ecsTaskExecutionRole"
+}
+
+variable "ecs_service_role_arn" {
+}
+
+variable "ecs_codedeploy_role_arn" {
+}
+
+variable "artifact_store_type" {
+}
+
+variable "artifact_store_location" {
+}
+
+variable "deploy_config_bucket" {
+}
+
+variable "deploy_config_object_key" {
+}
+
+variable "app_spec_template_path" {
+  default = "appspec.yml"
+}
+
+variable "task_def_template_path" {
+  default = "taskdef.json"
+}
+
+variable "task_def_image_placeholder" {
+  default = "IMAGE1_NAME"
+}
+
+variable "fargate_cpu" {
+  default = "256"
+}
+
+variable "fargate_memory" {
+  default = "512"
 }
