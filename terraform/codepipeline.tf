@@ -2,7 +2,7 @@
 
 resource "aws_codepipeline" "service_pipeline" {
   name = "service-pipeline-${var.region}"
-  role_arn = ""
+  role_arn = "arn:aws:iam::171154126783:role/service-role/AWSCodePipelineServiceRole-us-west-2-spring-boot-service"
   artifact_store {
     location = var.artifact_store_location
     type = var.artifact_store_type

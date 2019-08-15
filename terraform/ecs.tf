@@ -52,7 +52,6 @@ resource "aws_ecs_service" "ecs_service" {
   cluster = aws_ecs_cluster.fargate_cluster.id
   task_definition = aws_ecs_task_definition.spring-boot-service-taskdef.arn
   desired_count = 1
-  iam_role = var.ecs_service_role_arn
   launch_type = "FARGATE"
   load_balancer {
     target_group_arn = aws_lb_target_group.blue.id
