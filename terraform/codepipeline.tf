@@ -62,8 +62,6 @@ resource "aws_codepipeline" "service_pipeline" {
     }
   }
 
-  tags = {
-    project = "cd-pipeline"
-  }
+  tags = var.tags
 }
 

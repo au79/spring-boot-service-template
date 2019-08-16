@@ -56,3 +56,16 @@ variable "fargate_cpu" {
 variable "fargate_memory" {
   default = "512"
 }
+
+variable "container_port" {
+}
+
+variable "tags" {
+  type = map(string)
+}
+
+variable "application_name" {
+}
+
+variable "environment" {
+}

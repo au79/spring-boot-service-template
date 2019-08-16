@@ -1,7 +1,17 @@
 ## ECS
 
-resource "aws_ecs_task_definition" "spring-boot-service-taskdef" {
-  family = "spring-boot-service-taskdef"
+resource "aws_cloudwatch_log_group" "container_log_group" {
+  name = "/fargate/service/${var.application_name}-${var.environment}"
+  retention_in_days = 14
+}
+
+resource "aws_cloudwatch_log_stream" "app" {
+  log_group_name = aws_cloudwatch_log_group.container_log_group.name
+  name = "ecs/spring-boot-service-dev"
+}
+
+resource "aws_ecs_task_definition" "app" {
+  family = "${var.application_name}-${var.environment}"
   execution_role_arn = var.task_execution_role_arn
   requires_compatibilities = ["FARGATE"]
   network_mode = "awsvpc"
@@ -13,44 +23,39 @@ resource "aws_ecs_task_definition" "spring-boot-service-taskdef" {
   {
     "logConfiguration": {
       "logDriver": "awslogs",
-      "secretOptions": null,
       "options": {
-        "awslogs-group": "/ecs/spring-boot-service-taskdef",
-        "awslogs-region": "us-west-1",
+        "awslogs-group": "${aws_cloudwatch_log_group.container_log_group.name}",
+        "awslogs-region": "${var.region}",
         "awslogs-stream-prefix": "ecs"
       }
     },
     "portMappings": [
       {
-        "hostPort": 5150,
+        "hostPort": ${var.container_port},
         "protocol": "tcp",
-        "containerPort": 5150
+        "containerPort": ${var.container_port}
       }
     ],
     "image": "${var.container_image_uri}",
-    "name": "spring-boot-service-container",
+    "name": "${var.application_name}-${var.environment}",
     "cpu" : ${var.fargate_cpu},
     "memory": ${var.fargate_memory}
   }
 ]
 DEFINITION
 
-  tags = {
-    project = "cd-pipeline"
-  }
+  tags = var.tags
 }
 
 resource "aws_ecs_cluster" "fargate_cluster" {
-  name = "fargate-cluster-${var.region}"
-  tags = {
-    project = "cd-pipeline"
-  }
+  name = "${var.application_name}-${var.environment}"
+  tags = var.tags
 }
 
 resource "aws_ecs_service" "ecs_service" {
-  name = "blue-green-service-${var.region}"
+  name = "${var.application_name}-${var.environment}"
   cluster = aws_ecs_cluster.fargate_cluster.id
-  task_definition = aws_ecs_task_definition.spring-boot-service-taskdef.arn
+  task_definition = aws_ecs_task_definition.app.arn
   desired_count = 1
   launch_type = "FARGATE"
   deployment_controller {
@@ -59,14 +64,21 @@ resource "aws_ecs_service" "ecs_service" {
   network_configuration {
     security_groups = [aws_security_group.fargate_cluster_ecs_sg.id]
     subnets = aws_subnet.fargate_cluster_subnets.*.id
+    assign_public_ip = true
   }
   load_balancer {
     target_group_arn = aws_lb_target_group.blue.id
-    container_name = "spring-boot-service-container"
-    container_port = 5150
+    container_name = "${var.application_name}-${var.environment}"
+    container_port = var.container_port
   }
-  tags = {
-    project = "cd-pipeline"
+
+  # Workaround for https://github.com/hashicorp/terraform/issues/12634
+  depends_on = [aws_lb_listener.primary]
+
+  lifecycle {
+    ignore_changes = [task_definition]
   }
+
+  tags = var.tags
 }
 

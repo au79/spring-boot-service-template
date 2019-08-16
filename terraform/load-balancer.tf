@@ -6,33 +6,41 @@ resource "aws_lb" "spring_boot_service_lb" {
   subnets = aws_subnet.fargate_cluster_subnets.*.id
   security_groups = [aws_security_group.fargate_cluster_alb_sg.id]
 
-  tags = {
-    project = "cd-pipeline"
-  }
+  depends_on = [aws_internet_gateway.fargate_cluster_igw]
+
+  tags = var.tags
 }
 
 resource "aws_lb_target_group" "blue" {
   name = "service-alb-tg-blue-${var.region}"
-  port = 5150
+  port = var.container_port
   protocol = "HTTP"
   vpc_id = aws_vpc.fargate_cluster_vpc.id
   target_type = "ip"
-  
-  tags = {
-    project = "cd-pipeline"
+  health_check {
+    protocol = "HTTP"
+    path = "/actuator/health"
+    port = "5150"
+    matcher = "200"
   }
+  
+  tags = var.tags
 }
 
 resource "aws_lb_target_group" "green" {
   name = "service-alb-tg-green-${var.region}"
-  port = 5150
+  port = var.container_port
   protocol = "HTTP"
   vpc_id = aws_vpc.fargate_cluster_vpc.id
   target_type = "ip"
-
-  tags = {
-    project = "cd-pipeline"
+  health_check {
+    protocol = "HTTP"
+    path = "/actuator/health"
+    port = "5150"
+    matcher = "200"
   }
+
+  tags = var.tags
 }
 
 resource "aws_lb_listener" "primary" {
