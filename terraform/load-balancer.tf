@@ -20,7 +20,6 @@ resource "aws_lb_target_group" "blue" {
   health_check {
     protocol = "HTTP"
     path = "/actuator/health"
-    port = "5150"
     matcher = "200"
   }
   
@@ -36,7 +35,6 @@ resource "aws_lb_target_group" "green" {
   health_check {
     protocol = "HTTP"
     path = "/actuator/health"
-    port = "5150"
     matcher = "200"
   }
 
