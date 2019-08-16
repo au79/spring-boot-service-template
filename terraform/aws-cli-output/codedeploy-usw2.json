@@ -1,0 +1,69 @@
+{
+    "deploymentGroupInfo": {
+        "applicationName": "appECS-service-app-blue-green-us-west-2",
+        "deploymentGroupId": "29957890-def9-49a2-8da4-8eca62cdd360",
+        "deploymentGroupName": "dgpECS-service-app-blue-green-us-west-2",
+        "deploymentConfigName": "CodeDeployDefault.ECSAllAtOnce",
+        "ec2TagFilters": [],
+        "onPremisesInstanceTagFilters": [],
+        "autoScalingGroups": [],
+        "serviceRoleArn": "arn:aws:iam::171154126783:role/ecsCodeDeployRole",
+        "triggerConfigurations": [],
+        "autoRollbackConfiguration": {
+            "enabled": true,
+            "events": [
+                "DEPLOYMENT_FAILURE"
+            ]
+        },
+        "deploymentStyle": {
+            "deploymentType": "BLUE_GREEN",
+            "deploymentOption": "WITH_TRAFFIC_CONTROL"
+        },
+        "blueGreenDeploymentConfiguration": {
+            "terminateBlueInstancesOnDeploymentSuccess": {
+                "action": "TERMINATE",
+                "terminationWaitTimeInMinutes": 5
+            },
+            "deploymentReadyOption": {
+                "actionOnTimeout": "CONTINUE_DEPLOYMENT",
+                "waitTimeInMinutes": 0
+            }
+        },
+        "loadBalancerInfo": {
+            "targetGroupPairInfoList": [
+                {
+                    "targetGroups": [
+                        {
+                            "name": "service-alb-tg-blue-us-west-2"
+                        },
+                        {
+                            "name": "service-alb-tg-green-us-west-2"
+                        }
+                    ],
+                    "prodTrafficRoute": {
+                        "listenerArns": [
+                            "arn:aws:elasticloadbalancing:us-west-2:171154126783:listener/app/service-alb-us-west-2/5c3223b683856dad/c52d5b8c10952de8"
+                        ]
+                    },
+                    "testTrafficRoute": {
+                        "listenerArns": [
+                            "arn:aws:elasticloadbalancing:us-west-2:171154126783:listener/app/service-alb-us-west-2/5c3223b683856dad/1c892866a255d6a5"
+                        ]
+                    }
+                }
+            ]
+        },
+        "lastAttemptedDeployment": {
+            "deploymentId": "d-ME1BQ3BGN",
+            "status": "InProgress",
+            "createTime": 1565975004.758
+        },
+        "computePlatform": "ECS",
+        "ecsServices": [
+            {
+                "serviceName": "spring-boot-service-dev",
+                "clusterName": "spring-boot-service-dev"
+            }
+        ]
+    }
+}

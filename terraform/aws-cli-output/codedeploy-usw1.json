@@ -1,0 +1,83 @@
+{
+    "deploymentGroupInfo": {
+        "applicationName": "AppECS-fargate-cluster-usw1-spring-boot-service-blue-green",
+        "deploymentGroupId": "11ac9881-2954-42d3-a9c8-cc761eda29cf",
+        "deploymentGroupName": "DgpECS-fargate-cluster-usw1-spring-boot-service-blue-green",
+        "deploymentConfigName": "CodeDeployDefault.ECSAllAtOnce",
+        "ec2TagFilters": [],
+        "onPremisesInstanceTagFilters": [],
+        "autoScalingGroups": [],
+        "serviceRoleArn": "arn:aws:iam::171154126783:role/ecsCodeDeployRole",
+        "targetRevision": {
+            "revisionType": "String",
+            "string": {
+                "sha256": "07e228b770a36dbcb6780894ef33ad49f147e216f8ea06afc79c8ae4781fa8d3"
+            }
+        },
+        "triggerConfigurations": [],
+        "autoRollbackConfiguration": {
+            "enabled": true,
+            "events": [
+                "DEPLOYMENT_STOP_ON_REQUEST",
+                "DEPLOYMENT_FAILURE"
+            ]
+        },
+        "deploymentStyle": {
+            "deploymentType": "BLUE_GREEN",
+            "deploymentOption": "WITH_TRAFFIC_CONTROL"
+        },
+        "blueGreenDeploymentConfiguration": {
+            "terminateBlueInstancesOnDeploymentSuccess": {
+                "action": "TERMINATE",
+                "terminationWaitTimeInMinutes": 60
+            },
+            "deploymentReadyOption": {
+                "actionOnTimeout": "CONTINUE_DEPLOYMENT",
+                "waitTimeInMinutes": 0
+            }
+        },
+        "loadBalancerInfo": {
+            "targetGroupPairInfoList": [
+                {
+                    "targetGroups": [
+                        {
+                            "name": "spring-boot-service-tg-01"
+                        },
+                        {
+                            "name": "spring-boot-service-tg-02"
+                        }
+                    ],
+                    "prodTrafficRoute": {
+                        "listenerArns": [
+                            "arn:aws:elasticloadbalancing:us-west-1:171154126783:listener/app/spring-boot-service-alb/6ce5fc0b1e8f693c/6b2b9f2b4c394ca4"
+                        ]
+                    },
+                    "testTrafficRoute": {
+                        "listenerArns": [
+                            "arn:aws:elasticloadbalancing:us-west-1:171154126783:listener/app/spring-boot-service-alb/6ce5fc0b1e8f693c/e07a37b671bee6da"
+                        ]
+                    }
+                }
+            ]
+        },
+        "lastSuccessfulDeployment": {
+            "deploymentId": "d-CLNZS9SJN",
+            "status": "Succeeded",
+            "endTime": 1565832992.659,
+            "createTime": 1565829255.303
+        },
+        "lastAttemptedDeployment": {
+            "deploymentId": "d-CLNZS9SJN",
+            "status": "Succeeded",
+            "endTime": 1565832992.659,
+            "createTime": 1565829255.303
+        },
+        "computePlatform": "ECS",
+        "ecsServices": [
+            {
+                "serviceName": "spring-boot-service-blue-green",
+                "clusterName": "fargate-cluster-usw1"
+            }
+        ]
+    }
+}

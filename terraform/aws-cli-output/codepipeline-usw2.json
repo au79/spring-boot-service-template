@@ -1,0 +1,98 @@
+{
+    "pipeline": {
+        "name": "service-pipeline-us-west-2",
+        "roleArn": "arn:aws:iam::171154126783:role/service-role/AWSCodePipelineServiceRole-us-west-2-spring-boot-service",
+        "artifactStore": {
+            "type": "S3",
+            "location": "codepipeline-us-west-2-885847999191"
+        },
+        "stages": [
+            {
+                "name": "Source",
+                "actions": [
+                    {
+                        "name": "DeploymentConfigSource",
+                        "actionTypeId": {
+                            "category": "Source",
+                            "owner": "AWS",
+                            "provider": "S3",
+                            "version": "1"
+                        },
+                        "runOrder": 1,
+                        "configuration": {
+                            "PollForSourceChanges": "false",
+                            "S3Bucket": "com.oolong.build-artifacts.us-west-2",
+                            "S3ObjectKey": "spring-boot-service-deploy-specs.zip"
+                        },
+                        "outputArtifacts": [
+                            {
+                                "name": "DeploymentConfigArtifacts"
+                            }
+                        ],
+                        "inputArtifacts": []
+                    },
+                    {
+                        "name": "ApplicationImageSource",
+                        "actionTypeId": {
+                            "category": "Source",
+                            "owner": "AWS",
+                            "provider": "ECR",
+                            "version": "1"
+                        },
+                        "runOrder": 1,
+                        "configuration": {
+                            "ImageTag": "latest",
+                            "RepositoryName": "oolong/spring-boot-service"
+                        },
+                        "outputArtifacts": [
+                            {
+                                "name": "ApplicationImageArtifact"
+                            }
+                        ],
+                        "inputArtifacts": []
+                    }
+                ]
+            },
+            {
+                "name": "Deploy",
+                "actions": [
+                    {
+                        "name": "Deploy",
+                        "actionTypeId": {
+                            "category": "Deploy",
+                            "owner": "AWS",
+                            "provider": "CodeDeployToECS",
+                            "version": "1"
+                        },
+                        "runOrder": 1,
+                        "configuration": {
+                            "AppSpecTemplateArtifact": "DeploymentConfigArtifacts",
+                            "AppSpecTemplatePath": "appspec.json",
+                            "ApplicationName": "appECS-service-app-blue-green-us-west-2",
+                            "DeploymentGroupName": "dgpECS-service-app-blue-green-us-west-2",
+                            "Image1ArtifactName": "ApplicationImageArtifact",
+                            "Image1ContainerName": "IMAGE1_NAME",
+                            "TaskDefinitionTemplateArtifact": "DeploymentConfigArtifacts",
+                            "TaskDefinitionTemplatePath": "taskdef.json"
+                        },
+                        "outputArtifacts": [],
+                        "inputArtifacts": [
+                            {
+                                "name": "DeploymentConfigArtifacts"
+                            },
+                            {
+                                "name": "ApplicationImageArtifact"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "version": 1
+    },
+    "metadata": {
+        "pipelineArn": "arn:aws:codepipeline:us-west-2:171154126783:service-pipeline-us-west-2",
+        "created": 1565912368.831,
+        "updated": 1565912368.831
+    }
+}

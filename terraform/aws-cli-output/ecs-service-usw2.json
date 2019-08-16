@@ -1,0 +1,262 @@
+{
+    "services": [
+        {
+            "serviceArn": "arn:aws:ecs:us-west-2:171154126783:service/spring-boot-service-dev/spring-boot-service-dev",
+            "serviceName": "spring-boot-service-dev",
+            "clusterArn": "arn:aws:ecs:us-west-2:171154126783:cluster/spring-boot-service-dev",
+            "loadBalancers": [
+                {
+                    "targetGroupArn": "arn:aws:elasticloadbalancing:us-west-2:171154126783:targetgroup/service-alb-tg-blue-us-west-2/71aeaaa3719a3667",
+                    "containerName": "spring-boot-service-dev",
+                    "containerPort": 5150
+                }
+            ],
+            "serviceRegistries": [],
+            "status": "ACTIVE",
+            "desiredCount": 1,
+            "runningCount": 0,
+            "pendingCount": 0,
+            "launchType": "FARGATE",
+            "platformVersion": "1.3.0",
+            "taskDefinition": "arn:aws:ecs:us-west-2:171154126783:task-definition/spring-boot-service-dev:6",
+            "deploymentConfiguration": {
+                "maximumPercent": 200,
+                "minimumHealthyPercent": 100
+            },
+            "taskSets": [
+                {
+                    "id": "ecs-svc/9223370470879775956",
+                    "taskSetArn": "arn:aws:ecs:us-west-2:171154126783:task-set/spring-boot-service-dev/spring-boot-service-dev/ecs-svc/9223370470879775956",
+                    "status": "PRIMARY",
+                    "taskDefinition": "arn:aws:ecs:us-west-2:171154126783:task-definition/spring-boot-service-dev:6",
+                    "computedDesiredCount": 1,
+                    "pendingCount": 0,
+                    "runningCount": 0,
+                    "createdAt": 1565974999.842,
+                    "updatedAt": 1565974999.842,
+                    "launchType": "FARGATE",
+                    "platformVersion": "1.3.0",
+                    "networkConfiguration": {
+                        "awsvpcConfiguration": {
+                            "subnets": [
+                                "subnet-00d14184705f2c4fd",
+                                "subnet-0287d855af7f5fe23"
+                            ],
+                            "securityGroups": [
+                                "sg-0a213d3bd17b580f1"
+                            ],
+                            "assignPublicIp": "DISABLED"
+                        }
+                    },
+                    "loadBalancers": [
+                        {
+                            "targetGroupArn": "arn:aws:elasticloadbalancing:us-west-2:171154126783:targetgroup/service-alb-tg-blue-us-west-2/71aeaaa3719a3667",
+                            "containerName": "spring-boot-service-dev",
+                            "containerPort": 5150
+                        }
+                    ],
+                    "serviceRegistries": [],
+                    "scale": {
+                        "value": 100.0,
+                        "unit": "PERCENT"
+                    },
+                    "stabilityStatus": "STABILIZING",
+                    "stabilityStatusAt": 1565974999.842
+                },
+                {
+                    "id": "ecs-svc/9223370470879768162",
+                    "taskSetArn": "arn:aws:ecs:us-west-2:171154126783:task-set/spring-boot-service-dev/spring-boot-service-dev/ecs-svc/9223370470879768162",
+                    "startedBy": "CodeDeploy",
+                    "externalId": "d-ME1BQ3BGN",
+                    "status": "ACTIVE",
+                    "taskDefinition": "arn:aws:ecs:us-west-2:171154126783:task-definition/spring-boot-service-dev:7",
+                    "computedDesiredCount": 1,
+                    "pendingCount": 0,
+                    "runningCount": 0,
+                    "createdAt": 1565975007.644,
+                    "updatedAt": 1565975010.699,
+                    "launchType": "FARGATE",
+                    "platformVersion": "1.3.0",
+                    "networkConfiguration": {
+                        "awsvpcConfiguration": {
+                            "subnets": [
+                                "subnet-00d14184705f2c4fd",
+                                "subnet-0287d855af7f5fe23"
+                            ],
+                            "securityGroups": [
+                                "sg-0a213d3bd17b580f1"
+                            ],
+                            "assignPublicIp": "DISABLED"
+                        }
+                    },
+                    "loadBalancers": [
+                        {
+                            "targetGroupArn": "arn:aws:elasticloadbalancing:us-west-2:171154126783:targetgroup/service-alb-tg-green-us-west-2/91f5089279766bf8",
+                            "containerName": "spring-boot-service-dev",
+                            "containerPort": 5150
+                        }
+                    ],
+                    "serviceRegistries": [],
+                    "scale": {
+                        "value": 100.0,
+                        "unit": "PERCENT"
+                    },
+                    "stabilityStatus": "STABILIZING",
+                    "stabilityStatusAt": 1565975007.644
+                }
+            ],
+            "deployments": [],
+            "roleArn": "arn:aws:iam::171154126783:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+            "events": [
+                {
+                    "id": "e892891c-124f-4331-970f-237553216d29",
+                    "createdAt": 1565976511.052,
+                    "message": "(service spring-boot-service-dev, taskSet ecs-svc/9223370470879768162) has started 1 tasks: (task 76d5690b96da4930bfd89cf4dfc9650c)."
+                },
+                {
+                    "id": "c1e8373a-8955-40a7-9e0c-beb72aa089f1",
+                    "createdAt": 1565976510.825,
+                    "message": "(service spring-boot-service-dev, taskSet ecs-svc/9223370470879775956) has started 1 tasks: (task 59cb25bf9aa8465783e9b31e7e5d0055)."
+                },
+                {
+                    "id": "e2dc253c-8751-4aa5-9275-8d84b9d831b2",
+                    "createdAt": 1565976113.485,
+                    "message": "(service spring-boot-service-dev, taskSet ecs-svc/9223370470879768162) has started 1 tasks: (task b7f4c68f59774faba9fefd9aeebb54b3)."
+                },
+                {
+                    "id": "39dd3ea8-ea56-41b1-88a3-317e332c0d33",
+                    "createdAt": 1565976100.799,
+                    "message": "(service spring-boot-service-dev, taskSet ecs-svc/9223370470879775956) has started 1 tasks: (task 031f9f71b90848429c5a5aa660105c3b)."
+                },
+                {
+                    "id": "1b860a1f-4902-4300-8629-5fc49ad1e166",
+                    "createdAt": 1565976011.781,
+                    "message": "(service spring-boot-service-dev, taskSet ecs-svc/9223370470879768162) has started 1 tasks: (task c394557e266444eabc5ba1103b5997b8)."
+                },
+                {
+                    "id": "e76cb9d1-f13e-47ac-9023-a4b47ec748b7",
+                    "createdAt": 1565975983.089,
+                    "message": "(service spring-boot-service-dev, taskSet ecs-svc/9223370470879775956) has started 1 tasks: (task 4f7ce743fb404ff0ac8e860515aabafe)."
+                },
+                {
+                    "id": "33df3c80-90d5-48d8-92e4-703746b73730",
+                    "createdAt": 1565975911.02,
+                    "message": "(service spring-boot-service-dev, taskSet ecs-svc/9223370470879768162) has started 1 tasks: (task a4d4746225114d58ab7e504ad064616d)."
+                },
+                {
+                    "id": "e493b38e-913f-4b9d-877b-c256452ab67a",
+                    "createdAt": 1565975860.419,
+                    "message": "(service spring-boot-service-dev, taskSet ecs-svc/9223370470879775956) has started 1 tasks: (task eeaadf6a0eb447baaba4dd06813fe332)."
+                },
+                {
+                    "id": "5575b9e9-1477-4ff2-8412-fa4c81ad3f8f",
+                    "createdAt": 1565975797.188,
+                    "message": "(service spring-boot-service-dev, taskSet ecs-svc/9223370470879768162) has started 1 tasks: (task 90171c39e15b4d48a032f3b3e5d0e3c4)."
+                },
+                {
+                    "id": "51317d2b-070e-4f87-8e38-ae3ada62f7e9",
+                    "createdAt": 1565975755.495,
+                    "message": "(service spring-boot-service-dev, taskSet ecs-svc/9223370470879775956) has started 1 tasks: (task 338b2ec7ff284e4b909e51ea54e34d29)."
+                },
+                {
+                    "id": "708558db-4399-48b9-9e8e-c434c5ac6d89",
+                    "createdAt": 1565975676.35,
+                    "message": "(service spring-boot-service-dev, taskSet ecs-svc/9223370470879768162) has started 1 tasks: (task 5d77a1945a8a4d6997779c53af2de359)."
+                },
+                {
+                    "id": "96c99d3c-114f-4501-ae58-f16d0bce4785",
+                    "createdAt": 1565975647.847,
+                    "message": "(service spring-boot-service-dev, taskSet ecs-svc/9223370470879775956) has started 1 tasks: (task 9df3db9b28ff46adbf1e8bc3f812eef8)."
+                },
+                {
+                    "id": "49bba1bc-2978-44e3-9bc7-9a43c0b5842c",
+                    "createdAt": 1565975575.27,
+                    "message": "(service spring-boot-service-dev, taskSet ecs-svc/9223370470879768162) has started 1 tasks: (task 308082ccf04944d6a7c9f730c5a8e9fb)."
+                },
+                {
+                    "id": "cd5f4d60-e571-41b9-94f1-eb9c99e35615",
+                    "createdAt": 1565975543.354,
+                    "message": "(service spring-boot-service-dev, taskSet ecs-svc/9223370470879775956) has started 1 tasks: (task 4a02e6745a0942d1b479255633dfa521)."
+                },
+                {
+                    "id": "5f7bce5f-4b3e-400c-b66c-1846a8fe43fa",
+                    "createdAt": 1565975464.131,
+                    "message": "(service spring-boot-service-dev, taskSet ecs-svc/9223370470879768162) has started 1 tasks: (task d00738f277774dd584b60d13ea3bc283)."
+                },
+                {
+                    "id": "351ea694-3c4f-436f-aa13-54111901e398",
+                    "createdAt": 1565975441.946,
+                    "message": "(service spring-boot-service-dev, taskSet ecs-svc/9223370470879775956) has started 1 tasks: (task 8a67a7861e124295bc0510607887fa58)."
+                },
+                {
+                    "id": "2ee3bb10-bc85-46ff-a9f2-31f55ce3b4ab",
+                    "createdAt": 1565975357.015,
+                    "message": "(service spring-boot-service-dev, taskSet ecs-svc/9223370470879768162) has started 1 tasks: (task b980c8e8c6234d1a879be5f0d9b098f3)."
+                },
+                {
+                    "id": "a75ea7b3-67a2-42d4-ba8d-ae6ca14d55d6",
+                    "createdAt": 1565975328.238,
+                    "message": "(service spring-boot-service-dev, taskSet ecs-svc/9223370470879775956) has started 1 tasks: (task 6df27361485a400aa155b528df3045fa)."
+                },
+                {
+                    "id": "780afb3a-54b9-4e1c-8e7f-7ae694077b6b",
+                    "createdAt": 1565975236.716,
+                    "message": "(service spring-boot-service-dev, taskSet ecs-svc/9223370470879768162) has started 1 tasks: (task 7d7688af023a48c68051512b290ea16f)."
+                },
+                {
+                    "id": "e770fd12-bc8e-4b27-88e6-1f3a9ab33ff5",
+                    "createdAt": 1565975223.912,
+                    "message": "(service spring-boot-service-dev, taskSet ecs-svc/9223370470879775956) has started 1 tasks: (task 3aab407747964807972a072762e74f0a)."
+                },
+                {
+                    "id": "5ec9cd36-c7fb-42d8-ba01-bd1da1042d88",
+                    "createdAt": 1565975131.303,
+                    "message": "(service spring-boot-service-dev, taskSet ecs-svc/9223370470879768162) has started 1 tasks: (task 5abbb3c1d739413db6ca35571566f4c6)."
+                },
+                {
+                    "id": "0137ab4f-9beb-4520-b863-1a03224722cb",
+                    "createdAt": 1565975119.25,
+                    "message": "(service spring-boot-service-dev, taskSet ecs-svc/9223370470879775956) has started 1 tasks: (task d66c950a39d143c6887de5e2ff9fadcc)."
+                },
+                {
+                    "id": "ac989fa4-518a-4b74-85b8-52dfa39b8641",
+                    "createdAt": 1565975010.977,
+                    "message": "(service spring-boot-service-dev, taskSet ecs-svc/9223370470879768162) has started 1 tasks: (task 55253585e8374e24829018d09ebf667e)."
+                },
+                {
+                    "id": "133bd558-1e0d-4712-9714-e7446b52f944",
+                    "createdAt": 1565975010.709,
+                    "message": "(service spring-boot-service-dev) updated computedDesiredCount for taskSet ecs-svc/9223370470879768162 to 1."
+                },
+                {
+                    "id": "69541870-cd15-4b6d-8458-cd30f1b2d1fa",
+                    "createdAt": 1565975000.976,
+                    "message": "(service spring-boot-service-dev, taskSet ecs-svc/9223370470879775956) has started 1 tasks: (task f7e5ced6b6c44d7b822a2cb5ae0fad9e)."
+                }
+            ],
+            "createdAt": 1565974999.842,
+            "placementConstraints": [],
+            "placementStrategy": [],
+            "networkConfiguration": {
+                "awsvpcConfiguration": {
+                    "subnets": [
+                        "subnet-00d14184705f2c4fd",
+                        "subnet-0287d855af7f5fe23"
+                    ],
+                    "securityGroups": [
+                        "sg-0a213d3bd17b580f1"
+                    ],
+                    "assignPublicIp": "DISABLED"
+                }
+            },
+            "healthCheckGracePeriodSeconds": 0,
+            "schedulingStrategy": "REPLICA",
+            "deploymentController": {
+                "type": "CODE_DEPLOY"
+            },
+            "enableECSManagedTags": false,
+            "propagateTags": "NONE"
+        }
+    ],
+    "failures": []
+}

@@ -1,0 +1,596 @@
+{
+    "services": [
+        {
+            "serviceArn": "arn:aws:ecs:us-west-1:171154126783:service/fargate-cluster-usw1/spring-boot-service-blue-green",
+            "serviceName": "spring-boot-service-blue-green",
+            "clusterArn": "arn:aws:ecs:us-west-1:171154126783:cluster/fargate-cluster-usw1",
+            "loadBalancers": [
+                {
+                    "targetGroupArn": "arn:aws:elasticloadbalancing:us-west-1:171154126783:targetgroup/spring-boot-service-tg-02/c8681e883520a574",
+                    "containerName": "spring-boot-service-container",
+                    "containerPort": 5150
+                }
+            ],
+            "serviceRegistries": [],
+            "status": "ACTIVE",
+            "desiredCount": 1,
+            "runningCount": 1,
+            "pendingCount": 0,
+            "launchType": "FARGATE",
+            "platformVersion": "1.3.0",
+            "taskDefinition": "arn:aws:ecs:us-west-1:171154126783:task-definition/spring-boot-service-taskdef:10",
+            "deploymentConfiguration": {
+                "maximumPercent": 200,
+                "minimumHealthyPercent": 100
+            },
+            "taskSets": [
+                {
+                    "id": "ecs-svc/9223370471025515713",
+                    "taskSetArn": "arn:aws:ecs:us-west-1:171154126783:task-set/fargate-cluster-usw1/spring-boot-service-blue-green/ecs-svc/9223370471025515713",
+                    "status": "PRIMARY",
+                    "taskDefinition": "arn:aws:ecs:us-west-1:171154126783:task-definition/spring-boot-service-taskdef:10",
+                    "computedDesiredCount": 1,
+                    "pendingCount": 0,
+                    "runningCount": 1,
+                    "createdAt": 1565829260.094,
+                    "updatedAt": 1565829402.75,
+                    "launchType": "FARGATE",
+                    "platformVersion": "1.3.0",
+                    "networkConfiguration": {
+                        "awsvpcConfiguration": {
+                            "subnets": [
+                                "subnet-028e153cc3b31cba5",
+                                "subnet-0fa874bcc2b16fb71"
+                            ],
+                            "securityGroups": [
+                                "sg-020715b1025e59ec6"
+                            ],
+                            "assignPublicIp": "ENABLED"
+                        }
+                    },
+                    "loadBalancers": [
+                        {
+                            "targetGroupArn": "arn:aws:elasticloadbalancing:us-west-1:171154126783:targetgroup/spring-boot-service-tg-02/c8681e883520a574",
+                            "containerName": "spring-boot-service-container",
+                            "containerPort": 5150
+                        }
+                    ],
+                    "serviceRegistries": [],
+                    "scale": {
+                        "value": 100.0,
+                        "unit": "PERCENT"
+                    },
+                    "stabilityStatus": "STEADY_STATE",
+                    "stabilityStatusAt": 1565829402.75
+                }
+            ],
+            "deployments": [],
+            "roleArn": "arn:aws:iam::171154126783:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+            "events": [
+                {
+                    "id": "3c9fe06a-3916-45bd-a085-3504c443589a",
+                    "createdAt": 1565962768.676,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "ac5dbbec-691c-4f83-a39c-9cf96785b40b",
+                    "createdAt": 1565941123.045,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "3a5706fe-544b-4e96-88b6-3bd9a7b1e965",
+                    "createdAt": 1565919517.643,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "daa4407b-09af-4474-89e5-94ff89d5779d",
+                    "createdAt": 1565897891.123,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "e8c0fed3-13c1-43bd-adb8-a86f7ca03720",
+                    "createdAt": 1565876283.254,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "c6e44ed8-2876-4ee8-8708-c8a18872819a",
+                    "createdAt": 1565854662.487,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "7c32ff3d-548e-43af-839b-940f4b0a8565",
+                    "createdAt": 1565833034.395,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "fd285d96-5985-42f6-a52e-7536cab078b1",
+                    "createdAt": 1565833023.598,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471459027665) updated state to STEADY_STATE."
+                },
+                {
+                    "id": "6f014fde-6f11-4866-a301-469e624f99b2",
+                    "createdAt": 1565833013.817,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471459027665) has stopped 1 running tasks: (task fbacedfc12284c4dbf55842236a371c3)."
+                },
+                {
+                    "id": "b6e7cd92-c413-4728-a4ae-e23504e29d18",
+                    "createdAt": 1565833004.194,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471459027665) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "42a759cb-84f9-495b-9ab9-387c4eeabf48",
+                    "createdAt": 1565833004.193,
+                    "message": "(service spring-boot-service-blue-green) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-west-1:171154126783:targetgroup/spring-boot-service-tg-01/cfa71a26c5c5603a)"
+                },
+                {
+                    "id": "9db27cf2-cc76-4948-9e45-97bb2f4ab4c5",
+                    "createdAt": 1565833004.039,
+                    "message": "(service spring-boot-service-blue-green) updated computedDesiredCount for taskSet ecs-svc/9223370471459027665 to 0."
+                },
+                {
+                    "id": "6e51b604-1351-4ebe-9028-253d434a4265",
+                    "createdAt": 1565829402.757,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "f9549116-9d02-414b-b1d0-575416e58252",
+                    "createdAt": 1565829402.756,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471025515713) updated state to STEADY_STATE."
+                },
+                {
+                    "id": "2cbe0468-a8d5-4d0f-9fe5-43fcb3e50323",
+                    "createdAt": 1565829394.165,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471025515713) updated state to STABILIZING."
+                },
+                {
+                    "id": "e80b7e3a-4b4a-4f45-99b5-3540a00dce07",
+                    "createdAt": 1565829308.126,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "81468b69-7241-4a1d-8242-d3fd88bd53af",
+                    "createdAt": 1565829308.124,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471025515713) updated state to STEADY_STATE."
+                },
+                {
+                    "id": "20883a30-9083-4534-8191-0b2743967755",
+                    "createdAt": 1565829297.985,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471025515713) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-west-1:171154126783:targetgroup/spring-boot-service-tg-02/c8681e883520a574)"
+                },
+                {
+                    "id": "499ae838-6abb-480c-9f47-1e4ea558b215",
+                    "createdAt": 1565829266.205,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471025515713) has started 1 tasks: (task 00ba51eb641e4c9fa686202b219fd485)."
+                },
+                {
+                    "id": "47debc58-9de2-46e6-8a84-636c25b4bd6a",
+                    "createdAt": 1565829265.703,
+                    "message": "(service spring-boot-service-blue-green) updated computedDesiredCount for taskSet ecs-svc/9223370471025515713 to 1."
+                },
+                {
+                    "id": "2305f65e-1587-4917-a52c-e47413a615bc",
+                    "createdAt": 1565828385.165,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "79f85273-911c-473a-a5d8-ec27f6704376",
+                    "createdAt": 1565806780.935,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "baec0ca3-df3c-4304-8f7d-5aeebccf2ff1",
+                    "createdAt": 1565785164.668,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "2096389b-094a-4da6-8f41-8d0726e85b91",
+                    "createdAt": 1565763544.849,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "bfbcd06c-39bc-4206-92ee-e5adb1da92d8",
+                    "createdAt": 1565741930.493,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "2e87610d-e0b5-4ca6-9366-921fac6d5299",
+                    "createdAt": 1565720325.264,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "7699ac20-8507-4467-935e-5534779894da",
+                    "createdAt": 1565698699.495,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "11685be3-425d-4fea-9b2d-332150c65f3f",
+                    "createdAt": 1565677058.644,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "342f80c8-49ad-45a5-9cbb-2650140a3e46",
+                    "createdAt": 1565655441.349,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "35c6ff9f-c129-4958-b65e-1fd4931acc5f",
+                    "createdAt": 1565633795.401,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "a1e8aa15-7961-4d64-b6f1-a2729fe7c8d8",
+                    "createdAt": 1565612182.183,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "c7fd80ef-df77-4b68-ab5e-7c74d17cef0e",
+                    "createdAt": 1565590572.791,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "730b7b38-a929-45c3-9fec-82fac1804b73",
+                    "createdAt": 1565568950.495,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "ba4c2dd7-04e1-4bc2-b29b-456a352dbc5d",
+                    "createdAt": 1565547314.546,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "5fff4ec2-a9c2-4385-9894-9d72ed20b0b7",
+                    "createdAt": 1565525701.247,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "eecc730a-6304-4458-bdff-a9d00b8c8919",
+                    "createdAt": 1565504079.041,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "bb728fa0-cb83-4817-815a-fd3d4f9b9a9d",
+                    "createdAt": 1565482455.359,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "81301089-f23d-41f5-a73e-93540d3c0c84",
+                    "createdAt": 1565460821.809,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "3133d076-f8e0-44b4-af8d-e4ba4a49f7da",
+                    "createdAt": 1565439185.397,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "b046fcfa-2f64-417d-ae56-8052387494e0",
+                    "createdAt": 1565417566.811,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "266ca9ac-06bb-42cd-ae12-76a63584806c",
+                    "createdAt": 1565395922.647,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "9b7e0832-4a28-4c21-b041-29068f87d861",
+                    "createdAt": 1565395912.899,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471469726113) updated state to STEADY_STATE."
+                },
+                {
+                    "id": "10590c16-319f-4a13-b8f9-bf8f1eec83ba",
+                    "createdAt": 1565395902.164,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471469726113) has stopped 1 running tasks: (task 171769b72fbf4a5d9ab87cfe01ff7eac)."
+                },
+                {
+                    "id": "c18ad455-9f32-408e-800d-6ca5972fbcb5",
+                    "createdAt": 1565395892.057,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471469726113) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "e6f2feeb-b345-4b29-8637-56e56b1c2afd",
+                    "createdAt": 1565395892.056,
+                    "message": "(service spring-boot-service-blue-green) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-west-1:171154126783:targetgroup/spring-boot-service-tg-02/c8681e883520a574)"
+                },
+                {
+                    "id": "06f24159-9257-41e7-b478-249b022f303b",
+                    "createdAt": 1565395892.02,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471459027665) updated state to STEADY_STATE."
+                },
+                {
+                    "id": "5efa0502-be79-4527-9fec-a8ec070e4335",
+                    "createdAt": 1565395891.92,
+                    "message": "(service spring-boot-service-blue-green) updated computedDesiredCount for taskSet ecs-svc/9223370471469726113 to 0."
+                },
+                {
+                    "id": "7e0296b2-2801-4cfb-8daa-96c7e53c4aea",
+                    "createdAt": 1565395883.18,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471459027665) updated state to STABILIZING."
+                },
+                {
+                    "id": "b6c571dd-e8c4-4444-9d11-47f8a0fcc901",
+                    "createdAt": 1565395791.515,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "bcdfd649-cdcf-4b8c-85bf-054301a2e64e",
+                    "createdAt": 1565395791.511,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471459027665) updated state to STEADY_STATE."
+                },
+                {
+                    "id": "05c098fa-5999-4b01-b714-d2b90003a3fe",
+                    "createdAt": 1565395781.796,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471459027665) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-west-1:171154126783:targetgroup/spring-boot-service-tg-01/cfa71a26c5c5603a)"
+                },
+                {
+                    "id": "75b071c3-6d86-44c7-976e-1a410d72fb44",
+                    "createdAt": 1565395749.579,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471459027665) has started 1 tasks: (task fbacedfc12284c4dbf55842236a371c3)."
+                },
+                {
+                    "id": "b4a69cc3-bb26-420e-ac83-f9222b841cf4",
+                    "createdAt": 1565395749.094,
+                    "message": "(service spring-boot-service-blue-green) updated computedDesiredCount for taskSet ecs-svc/9223370471459027665 to 1."
+                },
+                {
+                    "id": "dbafbcdd-dca0-491e-8c0c-eeab2cd68bf0",
+                    "createdAt": 1565385241.252,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "849fe713-6c33-4335-8dec-85090aa2c960",
+                    "createdAt": 1565385230.245,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471480502161) updated state to STEADY_STATE."
+                },
+                {
+                    "id": "37edf8b4-ef03-419c-9ee2-fa4cb8d29efc",
+                    "createdAt": 1565385220.852,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471480502161) has stopped 1 running tasks: (task 84ba0927f176457e8382e1927f368a8e)."
+                },
+                {
+                    "id": "c9f86c99-6369-4fcf-8295-9e8cc53caf7d",
+                    "createdAt": 1565385211.828,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471480502161) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "477e6692-d194-4a5d-87d4-a32edda1f250",
+                    "createdAt": 1565385211.827,
+                    "message": "(service spring-boot-service-blue-green) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-west-1:171154126783:targetgroup/spring-boot-service-tg-01/cfa71a26c5c5603a)"
+                },
+                {
+                    "id": "c76d037e-41bf-4447-9496-47bdc24ff1cd",
+                    "createdAt": 1565385211.71,
+                    "message": "(service spring-boot-service-blue-green) updated computedDesiredCount for taskSet ecs-svc/9223370471480502161 to 0."
+                },
+                {
+                    "id": "8a551d92-aa23-464f-94dd-8f7b80362d76",
+                    "createdAt": 1565385101.86,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "fcc40931-ed21-400d-aacf-59872d23a560",
+                    "createdAt": 1565385101.857,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471469726113) updated state to STEADY_STATE."
+                },
+                {
+                    "id": "3e78a1d5-f3bc-42a2-92c6-f150b2ed54ac",
+                    "createdAt": 1565385092.167,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471469726113) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-west-1:171154126783:targetgroup/spring-boot-service-tg-02/c8681e883520a574)"
+                },
+                {
+                    "id": "f735f9d0-c3d1-4f0c-82b3-706cee306aa7",
+                    "createdAt": 1565385059.475,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471469726113) has started 1 tasks: (task 171769b72fbf4a5d9ab87cfe01ff7eac)."
+                },
+                {
+                    "id": "d33716b4-85bd-4df7-91dd-a95f8b169ef0",
+                    "createdAt": 1565385058.958,
+                    "message": "(service spring-boot-service-blue-green) updated computedDesiredCount for taskSet ecs-svc/9223370471469726113 to 1."
+                },
+                {
+                    "id": "2c094dac-f8d3-4ab7-8f69-bab43ef44429",
+                    "createdAt": 1565374642.628,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "a8cac937-f67a-43f5-9336-4d2d94b848f0",
+                    "createdAt": 1565374631.988,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471547156023) updated state to STEADY_STATE."
+                },
+                {
+                    "id": "00999f0a-cbd6-4871-9128-1611ba91923f",
+                    "createdAt": 1565374622.821,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471547156023) has stopped 1 running tasks: (task 467d4ba401504ebbb28a46ec58f2f35c)."
+                },
+                {
+                    "id": "99bca15b-5698-4487-8f7d-ff20f02dcf7d",
+                    "createdAt": 1565374613.183,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471547156023) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "40b7b558-66f7-4cd6-a245-2bbac5413be1",
+                    "createdAt": 1565374613.182,
+                    "message": "(service spring-boot-service-blue-green) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-west-1:171154126783:targetgroup/spring-boot-service-tg-02/c8681e883520a574)"
+                },
+                {
+                    "id": "182ec45d-6d20-48b7-86e0-39016cb46e17",
+                    "createdAt": 1565374613.062,
+                    "message": "(service spring-boot-service-blue-green) updated computedDesiredCount for taskSet ecs-svc/9223370471547156023 to 0."
+                },
+                {
+                    "id": "2e6c856b-8bd4-4504-b2ed-fc423adc5172",
+                    "createdAt": 1565374416.867,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "de324a01-4873-452c-a93a-d2dc228c61d0",
+                    "createdAt": 1565374416.866,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471480502161) updated state to STEADY_STATE."
+                },
+                {
+                    "id": "6a3919c0-4873-4c03-b8b7-f445ebbe2aa2",
+                    "createdAt": 1565374406.04,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471480502161) updated state to STABILIZING."
+                },
+                {
+                    "id": "bc179f46-a46a-4007-9534-6dde9ef667b3",
+                    "createdAt": 1565374315.728,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "a24678bc-eb57-4841-a4a4-d89faa18c7b1",
+                    "createdAt": 1565374315.725,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471480502161) updated state to STEADY_STATE."
+                },
+                {
+                    "id": "52afef60-d6cb-437b-baad-239f77a9b1e8",
+                    "createdAt": 1565374306.267,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471480502161) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-west-1:171154126783:targetgroup/spring-boot-service-tg-01/cfa71a26c5c5603a)"
+                },
+                {
+                    "id": "e0de1da1-e42d-4451-94a4-4beb72317a52",
+                    "createdAt": 1565374275.302,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471480502161) has started 1 tasks: (task 84ba0927f176457e8382e1927f368a8e)."
+                },
+                {
+                    "id": "a2ddcd43-c699-422c-92fe-5aea4b1dbb23",
+                    "createdAt": 1565374274.728,
+                    "message": "(service spring-boot-service-blue-green) updated computedDesiredCount for taskSet ecs-svc/9223370471480502161 to 1."
+                },
+                {
+                    "id": "22aacc4a-022f-4e47-af56-87f9010761ba",
+                    "createdAt": 1565353083.954,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "e51a675d-e5be-4a9e-9e36-6ccd1a16cb6b",
+                    "createdAt": 1565331442.78,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "9c2b53bb-1e9b-4f2b-a6d2-f2d99e004680",
+                    "createdAt": 1565309824.481,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "d81aa259-c525-49ec-aab9-8240a339bd7f",
+                    "createdAt": 1565309814.242,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471636853909) updated state to STEADY_STATE."
+                },
+                {
+                    "id": "68a55e74-b2d5-4de5-812e-7b2f2fce9c20",
+                    "createdAt": 1565309804.116,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471636853909) has stopped 1 running tasks: (task e11b0a1fd216474b82890acbf6a9ac0c)."
+                },
+                {
+                    "id": "92e69e22-e830-4b3e-b225-2cfd29fb7d90",
+                    "createdAt": 1565309795.974,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471636853909) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "91230724-fd52-4164-ba82-dd59a2633c55",
+                    "createdAt": 1565309795.973,
+                    "message": "(service spring-boot-service-blue-green) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-west-1:171154126783:targetgroup/spring-boot-service-tg-01/cfa71a26c5c5603a)"
+                },
+                {
+                    "id": "dbafc05d-dab8-4777-95aa-bed9ddd15721",
+                    "createdAt": 1565309795.812,
+                    "message": "(service spring-boot-service-blue-green) updated computedDesiredCount for taskSet ecs-svc/9223370471636853909 to 0."
+                },
+                {
+                    "id": "fdae31d2-4c4b-482c-91c2-53c52cd6c2c6",
+                    "createdAt": 1565307769.048,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "071bfd79-30bd-4bc1-9e96-e0cfe3c67149",
+                    "createdAt": 1565307769.047,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471547156023) updated state to STEADY_STATE."
+                },
+                {
+                    "id": "07ebd7f6-9947-45db-b3ac-067777f58e60",
+                    "createdAt": 1565307760.002,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471547156023) updated state to STABILIZING."
+                },
+                {
+                    "id": "d64c40ef-f497-44d4-be35-a0a0116b8245",
+                    "createdAt": 1565307674.343,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "7afff1a1-b988-42ea-a62b-0dc7b2ed4b78",
+                    "createdAt": 1565307674.34,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471547156023) updated state to STEADY_STATE."
+                },
+                {
+                    "id": "33a08cef-2cf6-4067-a37f-c568b01a1117",
+                    "createdAt": 1565307663.842,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471547156023) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-west-1:171154126783:targetgroup/spring-boot-service-tg-02/c8681e883520a574)"
+                },
+                {
+                    "id": "b77700a2-43c4-45d3-9e22-6f27b00fb2ec",
+                    "createdAt": 1565307631.471,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471547156023) has started 1 tasks: (task 467d4ba401504ebbb28a46ec58f2f35c)."
+                },
+                {
+                    "id": "19f6b994-9318-4d71-83f7-1822cb7e1f14",
+                    "createdAt": 1565307631.007,
+                    "message": "(service spring-boot-service-blue-green) updated computedDesiredCount for taskSet ecs-svc/9223370471547156023 to 1."
+                },
+                {
+                    "id": "9c7c7eca-9c73-4f99-a399-91ea2595e6c6",
+                    "createdAt": 1565304970.677,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "9ed73f81-6f68-42d1-afe5-90791805c034",
+                    "createdAt": 1565283328.715,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "d5811e04-6e84-402c-a1f1-d99198bfe95b",
+                    "createdAt": 1565261690.373,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "a7aef755-9714-4b61-87b6-993c6508b0c8",
+                    "createdAt": 1565240067.065,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "c483ec83-50c8-487d-9a65-c2221e0c6a85",
+                    "createdAt": 1565218449.111,
+                    "message": "(service spring-boot-service-blue-green) has reached a steady state."
+                },
+                {
+                    "id": "b7db8292-3c70-4705-a6ed-e61bc46134a0",
+                    "createdAt": 1565218439.811,
+                    "message": "(service spring-boot-service-blue-green, taskSet ecs-svc/9223370471639684357) updated state to STEADY_STATE."
+                }
+            ],
+            "createdAt": 1562785985.075,
+            "placementConstraints": [],
+            "placementStrategy": [],
+            "networkConfiguration": {
+                "awsvpcConfiguration": {
+                    "subnets": [
+                        "subnet-028e153cc3b31cba5",
+                        "subnet-0fa874bcc2b16fb71"
+                    ],
+                    "securityGroups": [
+                        "sg-020715b1025e59ec6"
+                    ],
+                    "assignPublicIp": "ENABLED"
+                }
+            },
+            "healthCheckGracePeriodSeconds": 0,
+            "schedulingStrategy": "REPLICA",
+            "deploymentController": {
+                "type": "CODE_DEPLOY"
+            },
+            "enableECSManagedTags": false,
+            "propagateTags": "NONE"
+        }
+    ],
+    "failures": []
+}
