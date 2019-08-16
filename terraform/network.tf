@@ -72,6 +72,16 @@ resource "aws_security_group_rule" "fargate_cluster_alb_sg_rule_port8080" {
   security_group_id = aws_security_group.fargate_cluster_alb_sg.id
 }
 
+resource "aws_security_group_rule" "fargate_cluster_alb_sg_egress_rule" {
+  description = "All outbound traffic"
+  type = "egress"
+  from_port = 0
+  to_port = 0
+  protocol = "-1"
+  cidr_blocks = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.fargate_cluster_alb_sg.id
+}
+
 resource "aws_security_group" "fargate_cluster_ecs_sg" {
   name = "fargate_cluster_ecs_sg"
   vpc_id = aws_vpc.fargate_cluster_vpc.id
