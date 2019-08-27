@@ -19,7 +19,7 @@ resource "aws_lb_target_group" "blue" {
   target_type = "ip"
   health_check {
     protocol = "HTTP"
-    path = "/actuator/health"
+    path = "/"
     matcher = "200"
   }
   
@@ -34,7 +34,7 @@ resource "aws_lb_target_group" "green" {
   target_type = "ip"
   health_check {
     protocol = "HTTP"
-    path = "/actuator/health"
+    path = "/"
     matcher = "200"
   }
 
