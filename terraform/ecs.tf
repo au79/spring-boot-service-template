@@ -5,11 +5,6 @@ resource "aws_cloudwatch_log_group" "container_log_group" {
   retention_in_days = 14
 }
 
-resource "aws_cloudwatch_log_stream" "app" {
-  log_group_name = aws_cloudwatch_log_group.container_log_group.name
-  name = "ecs/spring-boot-service-dev"
-}
-
 resource "aws_ecs_task_definition" "app" {
   family = "${var.application_name}-${var.environment}"
   execution_role_arn = var.task_execution_role_arn
