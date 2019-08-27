@@ -89,16 +89,6 @@ resource "aws_security_group" "fargate_cluster_ecs_sg" {
   tags = var.tags
 }
 
-resource "aws_security_group_rule" "direct_container_access" {
-  description = "Public access to containers"
-  type = "ingress"
-  from_port = 5150
-  to_port = 5150
-  protocol = "tcp"
-  cidr_blocks = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.fargate_cluster_ecs_sg.id
-}
-
 resource "aws_security_group_rule" "fargate_cluster_ecs_sg_ingress_rule" {
   description = "All inbound TCP traffic"
   type = "ingress"
