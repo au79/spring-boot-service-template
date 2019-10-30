@@ -25,6 +25,9 @@ variable "ecs_service_role_arn" {
 variable "ecs_codedeploy_role_arn" {
 }
 
+variable "codebuild_service_role_arn" {
+}
+
 variable "artifact_store_type" {
 }
 
@@ -68,4 +71,7 @@ variable "application_name" {
 }
 
 variable "environment" {
+}
+
+variable "source_location" {
 }

@@ -13,6 +13,8 @@ container_image_uri = "171154126783.dkr.ecr.us-west-2.amazonaws.com/oolong/sprin
 task_execution_role_arn = "arn:aws:iam::171154126783:role/ecsTaskExecutionRole"
 ecs_service_role_arn = "arn:aws:iam::171154126783:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS"
 ecs_codedeploy_role_arn = "arn:aws:iam::171154126783:role/ecsCodeDeployRole"
+codebuild_service_role_arn = "arn:aws:iam::171154126783:role/service-role/CodeBuild-Service-Role"
+
 app_spec_template_path = "appspec.json"
 
 application_name = "spring-boot-service"
@@ -21,3 +23,6 @@ tags = {
   environment = "dev"
   project = "cd-pipeline"
 }
+
+source_location = "https://github.com/au79/spring-boot-service-template.git"
+
